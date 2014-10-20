@@ -1,0 +1,52 @@
+Track profile completeness:
+have extra table with:
+jsid, and the entries as fields
+
+-----------------------------
++ notification
++ shortlist
++ UI
+
++ populate category table
++ display full list of jobs / categorised
++ add more job seekers
+
++ check whether confirmed subscription (both js and hr)
+
++ CV Creator
+
++ appeals
+
+
++audit table
+
++search jobs (enable auto-suggestions and 'live searches'
+
+---
+check Sender Policy Framework
+
+http://www.openspf.org/
+
+
+Javascript stuff:
+
++ slide in notifier: http://www.kielabokkie.nl/post/twitter-like-notification-using-jquery
+
++ http://www.sohtanaka.com/, front-end developer (blog), http://www.sohtanaka.com/web-design/simple-accordion-w-css-and-jquery/
+
++ tooltip, http://flowplayer.org/tools/demos/tooltip/index.html
+
+------------------------------
+Mapping
++ http://www.geowebguru.com/articles/139-density-mapping-in-google-maps-with-the-heatmapapi
+
+
+
+AW5W@B26(p3R
+
+PDF
++ http://www.christophermonnat.com/2008/08/generating-pdf-files-using-codeigniter/
+
+
+SELECT  @a:=count(distinct item) as count FROM `audit_profile_js` WHERE jsid='25'
+
