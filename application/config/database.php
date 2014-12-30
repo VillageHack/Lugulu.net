@@ -39,8 +39,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "prof";
-$db['default']['password'] = "prof";
-$db['default']['database'] = "lugulu";
+$db['default']['password'] = "pr0f";
+$db['default']['database'] = "lugulunet";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;

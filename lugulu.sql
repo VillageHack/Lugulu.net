@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.2deb1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 19, 2011 at 06:24 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.2-1ubuntu4
+-- Host: 127.0.0.1
+-- Generation Time: Dec 30, 2014 at 01:13 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,7 +17,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `lugulu`
+-- Database: `lugulunet`
 --
 
 -- --------------------------------------------------------
@@ -31,18 +32,8 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
   `user_agent` varchar(50) NOT NULL,
   `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
   `user_data` text NOT NULL,
-  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`session_id`)
+  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ci_sessions`
---
-
-INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`, `login_time`) VALUES
-('945c5ea5d0f2bf80abd2fb1354586b4a', '220.181.108.157', 'Baiduspider+(+http://www.baidu.com/search/spider.h', 1295190794, '', '2011-01-16 09:13:14'),
-('31f9d6a479ffb72cf54896175e664459', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKi', 1297350935, '', '2011-02-10 18:15:35'),
-('a86036f872fa230440c6ebb24ba206b6', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKi', 1295194977, 'a:8:{s:10:"first_name";s:7:"Anthony";s:9:"last_name";s:6:"Nandaa";s:5:"email";s:20:"profnandaa@gmail.com";s:5:"phone";s:10:"0728590438";s:8:"time_reg";s:19:"2011-01-08 09:56:43";s:6:"active";s:1:"0";s:3:"mid";s:2:"10";s:12:"is_logged_in";s:1:"1";}', '2011-01-16 18:50:11');
 
 -- --------------------------------------------------------
 
@@ -51,15 +42,9 @@ INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activ
 --
 
 CREATE TABLE IF NOT EXISTS `edu_level` (
-  `eid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `edu_level`
---
-
+`eid` int(11) NOT NULL,
+  `name` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -68,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `edu_level` (
 --
 
 CREATE TABLE IF NOT EXISTS `event` (
-  `eid` int(11) NOT NULL AUTO_INCREMENT,
+`eid` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `descr` text,
   `time` varchar(50) DEFAULT NULL,
@@ -76,15 +61,8 @@ CREATE TABLE IF NOT EXISTS `event` (
   `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   `mid` int(11) DEFAULT NULL,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`eid`),
-  KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `event`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -93,20 +71,12 @@ CREATE TABLE IF NOT EXISTS `event` (
 --
 
 CREATE TABLE IF NOT EXISTS `e_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `eid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `eid` (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `e_comment`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -115,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `e_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `group` (
-  `gid` int(11) NOT NULL AUTO_INCREMENT,
+`gid` int(11) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
   `gcid` int(11) DEFAULT NULL,
   `activities` text,
@@ -125,16 +95,8 @@ CREATE TABLE IF NOT EXISTS `group` (
   `members` int(11) DEFAULT NULL,
   `mid` int(11) DEFAULT NULL,
   `year_established` int(11) DEFAULT NULL,
-  `time_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`gid`),
-  KEY `mid` (`mid`),
-  KEY `gcid` (`gcid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `group`
---
-
+  `time_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -143,15 +105,9 @@ CREATE TABLE IF NOT EXISTS `group` (
 --
 
 CREATE TABLE IF NOT EXISTS `group_cat` (
-  `gcid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`gcid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `group_cat`
---
-
+`gcid` int(11) NOT NULL,
+  `name` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -160,19 +116,12 @@ CREATE TABLE IF NOT EXISTS `group_cat` (
 --
 
 CREATE TABLE IF NOT EXISTS `idea` (
-  `iid` int(11) NOT NULL AUTO_INCREMENT,
+`iid` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `descr` text,
   `mid` int(11) DEFAULT NULL,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`iid`),
-  KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `idea`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -181,20 +130,12 @@ CREATE TABLE IF NOT EXISTS `idea` (
 --
 
 CREATE TABLE IF NOT EXISTS `i_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `iid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `iid` (`iid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `i_comment`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -203,23 +144,15 @@ CREATE TABLE IF NOT EXISTS `i_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `job` (
-  `jid` int(11) NOT NULL AUTO_INCREMENT,
+`jid` int(11) NOT NULL,
   `title` varchar(40) DEFAULT NULL,
   `descr` text,
   `eid` int(11) DEFAULT NULL,
   `dead_line` date DEFAULT NULL,
   `send_to` text,
   `mid` int(11) DEFAULT NULL,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`jid`),
-  KEY `mid` (`mid`),
-  KEY `eid` (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `job`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -228,20 +161,12 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 CREATE TABLE IF NOT EXISTS `j_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `jid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `jid` (`jid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `j_comment`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -250,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `j_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `member` (
-  `mid` int(11) NOT NULL AUTO_INCREMENT,
+`mid` int(11) NOT NULL,
   `f_name` varchar(30) DEFAULT NULL,
   `l_name` varchar(30) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
@@ -267,33 +192,8 @@ CREATE TABLE IF NOT EXISTS `member` (
   `time_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(40) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0',
-  `villager` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`mid`),
-  UNIQUE KEY `email` (`email`),
-  KEY `cid` (`cid`),
-  KEY `eid` (`eid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`mid`, `f_name`, `l_name`, `phone`, `email`, `fb`, `twitter`, `profession`, `cid`, `eid`, `pri_school`, `high_school`, `college`, `course`, `time_reg`, `password`, `active`, `villager`) VALUES
-(10, 'Anthony', 'Nandaa', '0728590438', 'profnandaa@gmail.com', 'http://facebook.com/profnandaa', 'http://twitter.com/profnandaa', 'IT', NULL, NULL, 'Lugulu Boarding Primary School', 'Friends School Kamusinga', 'University of Nairobi', 'BSc. Computer Science', '2011-01-08 09:56:43', '81dc9bdb52d04dc20036dbd8313ed055', 0, 1),
-(11, 'Leah', 'Atim', '0728883857', 'batimleah@yahoo.com', '', '', '', NULL, NULL, 'Lugulu boarding primary school', 'Friends school kamusinga', '', '', '2011-01-09 10:50:17', '0f5c53852c54e0975cb8674c72d9404d', 0, 1),
-(12, 'Joy', 'Carole', '0725022780', 'jy_carole@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 10:55:09', '8c64e82f0c9323e3e4f7319d86854d61', 0, 1),
-(13, 'nelson', 'lubisiy', '8870750748', 'nelsonwanjala@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 12:19:31', '979f88b7b478c58d0fa6fd4f0d49abb4', 0, 1),
-(14, 'Michael', 'Murumba', '+254734589971', 'mmurumba@gmail.com', 'http://www.facebook.com/profile.php?refid=7', 'http://www.twitter.com/mmurumba', 'Journalist/PR consultant', NULL, NULL, 'Lugulu Mixed Primary', 'Teremi Boys High', 'K I M C', 'Mass Communication', '2011-01-09 14:30:07', '10546afe24e09662b3217bcc485946a7', 0, 1),
-(15, 'Mathew', 'Egessa', '0724396442', 'egessa.mathew@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 15:03:11', 'fa9d12ff1bb7c99c1e0edc29d8cbbb33', 0, 2),
-(16, 'Muraya', 'Kamau', '0724213205', 'martin@itech2020.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 23:09:21', '2e2c37a1f5a897cbf3c81720cc29eeae', 1, 1),
-(17, 'Eugene', 'Mechumo', '0700314800', 'Mechumo@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 23:38:05', '09b36052074995ca5779f24723aa3795', 1, 1),
-(18, 'Izzoh', 'Magari', '0751966748', 'isaac_magari@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-09 23:47:12', '3646f0f3096cd5455d5b4201e7189dd7', 1, 1),
-(19, 'Gilbert', 'juma', '0726108015', 'zdymkalla@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-10 01:13:30', '0a2432d1b5b372d5ef13febd30566b70', 0, 1),
-(20, 'caroline', 'mugerwa', '+12162692041', 'cmugerwa@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-10 09:22:32', '2b46165851f75f7be714f0a6d8a08fd1', 0, 1),
-(21, 'Esther', 'Butts', '0720987323', 'brendarembo@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-10 22:22:56', 'af8c3b7222725f20a92e32a8398c1246', 0, 1),
-(22, 'Naphtal', 'Wanyonyi', '+254725486156', 'wanaphtal@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-12 02:59:00', '0540cfa35c1cafc25a96f465aca9a9fc', 0, 1),
-(23, 'Joseph', 'Tawai', '+254727936256', 'wextawy@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2011-01-14 11:03:37', 'f458efd31fba2701229749200d53eac0', 0, 1),
-(25, 'Joseph', 'Tawai', '+254727936256', 'josephtawai@lugulu.net', '', '', 'Banker', NULL, NULL, 'Lugulu Boarding', 'F.S.K', 'U.o.N', '', '2011-01-14 11:06:40', 'f458efd31fba2701229749200d53eac0', 0, 1);
+  `villager` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -302,20 +202,13 @@ INSERT INTO `member` (`mid`, `f_name`, `l_name`, `phone`, `email`, `fb`, `twitte
 --
 
 CREATE TABLE IF NOT EXISTS `notice` (
-  `nid` int(11) NOT NULL AUTO_INCREMENT,
+`nid` int(11) NOT NULL,
   `subject` varchar(100) DEFAULT NULL,
   `notice` text,
   `mid` int(11) DEFAULT NULL,
   `active` int(11) DEFAULT '1',
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`nid`),
-  KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `notice`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -324,20 +217,12 @@ CREATE TABLE IF NOT EXISTS `notice` (
 --
 
 CREATE TABLE IF NOT EXISTS `n_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `nid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `nid` (`nid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `n_comment`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -346,20 +231,13 @@ CREATE TABLE IF NOT EXISTS `n_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `orbituary` (
-  `oid` int(11) NOT NULL AUTO_INCREMENT,
+`oid` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `descr` text,
   `date` date DEFAULT NULL,
   `mid` int(11) DEFAULT NULL,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`oid`),
-  KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `orbituary`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -368,20 +246,12 @@ CREATE TABLE IF NOT EXISTS `orbituary` (
 --
 
 CREATE TABLE IF NOT EXISTS `o_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `oid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `oid` (`oid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `o_comment`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -390,15 +260,9 @@ CREATE TABLE IF NOT EXISTS `o_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `prof_cat` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `prof_cat`
---
-
+`cid` int(11) NOT NULL,
+  `name` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -407,21 +271,14 @@ CREATE TABLE IF NOT EXISTS `prof_cat` (
 --
 
 CREATE TABLE IF NOT EXISTS `wedding` (
-  `wid` int(11) NOT NULL AUTO_INCREMENT,
+`wid` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `descr` text,
   `venue` varchar(30) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `mid` int(11) DEFAULT NULL,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`wid`),
-  KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `wedding`
---
-
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -430,21 +287,214 @@ CREATE TABLE IF NOT EXISTS `wedding` (
 --
 
 CREATE TABLE IF NOT EXISTS `w_comment` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+`cid` int(11) NOT NULL,
   `mid` int(11) DEFAULT NULL,
   `wid` int(11) DEFAULT NULL,
   `comment` text,
-  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cid`),
-  KEY `mid` (`mid`),
-  KEY `wid` (`wid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `w_comment`
+-- Indexes for dumped tables
 --
 
+--
+-- Indexes for table `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+ ADD PRIMARY KEY (`session_id`);
 
+--
+-- Indexes for table `edu_level`
+--
+ALTER TABLE `edu_level`
+ ADD PRIMARY KEY (`eid`);
+
+--
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+ ADD PRIMARY KEY (`eid`), ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `e_comment`
+--
+ALTER TABLE `e_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `eid` (`eid`);
+
+--
+-- Indexes for table `group`
+--
+ALTER TABLE `group`
+ ADD PRIMARY KEY (`gid`), ADD KEY `mid` (`mid`), ADD KEY `gcid` (`gcid`);
+
+--
+-- Indexes for table `group_cat`
+--
+ALTER TABLE `group_cat`
+ ADD PRIMARY KEY (`gcid`);
+
+--
+-- Indexes for table `idea`
+--
+ALTER TABLE `idea`
+ ADD PRIMARY KEY (`iid`), ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `i_comment`
+--
+ALTER TABLE `i_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `iid` (`iid`);
+
+--
+-- Indexes for table `job`
+--
+ALTER TABLE `job`
+ ADD PRIMARY KEY (`jid`), ADD KEY `mid` (`mid`), ADD KEY `eid` (`eid`);
+
+--
+-- Indexes for table `j_comment`
+--
+ALTER TABLE `j_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `jid` (`jid`);
+
+--
+-- Indexes for table `member`
+--
+ALTER TABLE `member`
+ ADD PRIMARY KEY (`mid`), ADD UNIQUE KEY `email` (`email`), ADD KEY `cid` (`cid`), ADD KEY `eid` (`eid`);
+
+--
+-- Indexes for table `notice`
+--
+ALTER TABLE `notice`
+ ADD PRIMARY KEY (`nid`), ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `n_comment`
+--
+ALTER TABLE `n_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `nid` (`nid`);
+
+--
+-- Indexes for table `orbituary`
+--
+ALTER TABLE `orbituary`
+ ADD PRIMARY KEY (`oid`), ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `o_comment`
+--
+ALTER TABLE `o_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `oid` (`oid`);
+
+--
+-- Indexes for table `prof_cat`
+--
+ALTER TABLE `prof_cat`
+ ADD PRIMARY KEY (`cid`);
+
+--
+-- Indexes for table `wedding`
+--
+ALTER TABLE `wedding`
+ ADD PRIMARY KEY (`wid`), ADD KEY `mid` (`mid`);
+
+--
+-- Indexes for table `w_comment`
+--
+ALTER TABLE `w_comment`
+ ADD PRIMARY KEY (`cid`), ADD KEY `mid` (`mid`), ADD KEY `wid` (`wid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `edu_level`
+--
+ALTER TABLE `edu_level`
+MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `e_comment`
+--
+ALTER TABLE `e_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `group`
+--
+ALTER TABLE `group`
+MODIFY `gid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `group_cat`
+--
+ALTER TABLE `group_cat`
+MODIFY `gcid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `idea`
+--
+ALTER TABLE `idea`
+MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `i_comment`
+--
+ALTER TABLE `i_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `job`
+--
+ALTER TABLE `job`
+MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `j_comment`
+--
+ALTER TABLE `j_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `member`
+--
+ALTER TABLE `member`
+MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `notice`
+--
+ALTER TABLE `notice`
+MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `n_comment`
+--
+ALTER TABLE `n_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `orbituary`
+--
+ALTER TABLE `orbituary`
+MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `o_comment`
+--
+ALTER TABLE `o_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `prof_cat`
+--
+ALTER TABLE `prof_cat`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wedding`
+--
+ALTER TABLE `wedding`
+MODIFY `wid` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `w_comment`
+--
+ALTER TABLE `w_comment`
+MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -453,91 +503,95 @@ CREATE TABLE IF NOT EXISTS `w_comment` (
 -- Constraints for table `event`
 --
 ALTER TABLE `event`
-  ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
+ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
 
 --
 -- Constraints for table `e_comment`
 --
 ALTER TABLE `e_comment`
-  ADD CONSTRAINT `e_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `e_comment_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `event` (`eid`);
+ADD CONSTRAINT `e_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `e_comment_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `event` (`eid`);
 
 --
 -- Constraints for table `group`
 --
 ALTER TABLE `group`
-  ADD CONSTRAINT `group_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `group_ibfk_2` FOREIGN KEY (`gcid`) REFERENCES `group_cat` (`gcid`);
+ADD CONSTRAINT `group_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `group_ibfk_2` FOREIGN KEY (`gcid`) REFERENCES `group_cat` (`gcid`);
 
 --
 -- Constraints for table `idea`
 --
 ALTER TABLE `idea`
-  ADD CONSTRAINT `idea_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
+ADD CONSTRAINT `idea_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
 
 --
 -- Constraints for table `i_comment`
 --
 ALTER TABLE `i_comment`
-  ADD CONSTRAINT `i_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `i_comment_ibfk_2` FOREIGN KEY (`iid`) REFERENCES `idea` (`iid`);
+ADD CONSTRAINT `i_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `i_comment_ibfk_2` FOREIGN KEY (`iid`) REFERENCES `idea` (`iid`);
 
 --
 -- Constraints for table `job`
 --
 ALTER TABLE `job`
-  ADD CONSTRAINT `job_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `job_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `edu_level` (`eid`);
+ADD CONSTRAINT `job_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `job_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `edu_level` (`eid`);
 
 --
 -- Constraints for table `j_comment`
 --
 ALTER TABLE `j_comment`
-  ADD CONSTRAINT `j_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `j_comment_ibfk_2` FOREIGN KEY (`jid`) REFERENCES `job` (`jid`);
+ADD CONSTRAINT `j_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `j_comment_ibfk_2` FOREIGN KEY (`jid`) REFERENCES `job` (`jid`);
 
 --
 -- Constraints for table `member`
 --
 ALTER TABLE `member`
-  ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `prof_cat` (`cid`),
-  ADD CONSTRAINT `member_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `edu_level` (`eid`);
+ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `prof_cat` (`cid`),
+ADD CONSTRAINT `member_ibfk_2` FOREIGN KEY (`eid`) REFERENCES `edu_level` (`eid`);
 
 --
 -- Constraints for table `notice`
 --
 ALTER TABLE `notice`
-  ADD CONSTRAINT `notice_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
+ADD CONSTRAINT `notice_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
 
 --
 -- Constraints for table `n_comment`
 --
 ALTER TABLE `n_comment`
-  ADD CONSTRAINT `n_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `n_comment_ibfk_2` FOREIGN KEY (`nid`) REFERENCES `notice` (`nid`);
+ADD CONSTRAINT `n_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `n_comment_ibfk_2` FOREIGN KEY (`nid`) REFERENCES `notice` (`nid`);
 
 --
 -- Constraints for table `orbituary`
 --
 ALTER TABLE `orbituary`
-  ADD CONSTRAINT `orbituary_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
+ADD CONSTRAINT `orbituary_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
 
 --
 -- Constraints for table `o_comment`
 --
 ALTER TABLE `o_comment`
-  ADD CONSTRAINT `o_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `o_comment_ibfk_2` FOREIGN KEY (`oid`) REFERENCES `orbituary` (`oid`);
+ADD CONSTRAINT `o_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `o_comment_ibfk_2` FOREIGN KEY (`oid`) REFERENCES `orbituary` (`oid`);
 
 --
 -- Constraints for table `wedding`
 --
 ALTER TABLE `wedding`
-  ADD CONSTRAINT `wedding_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
+ADD CONSTRAINT `wedding_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`);
 
 --
 -- Constraints for table `w_comment`
 --
 ALTER TABLE `w_comment`
-  ADD CONSTRAINT `w_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
-  ADD CONSTRAINT `w_comment_ibfk_2` FOREIGN KEY (`wid`) REFERENCES `wedding` (`wid`);
+ADD CONSTRAINT `w_comment_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `member` (`mid`),
+ADD CONSTRAINT `w_comment_ibfk_2` FOREIGN KEY (`wid`) REFERENCES `wedding` (`wid`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
